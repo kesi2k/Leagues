@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h2>{{response}}</h2>
+<p>Redirecting to front page</p>
+
+<script>
+setTimeout(function(){
+  window.location.href ="/leagues";
+}, 3000);
+
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>{{team.name}}
+			<figure class="creator">
+				<img src="{{user.picture}}">
+				<figcaption>Team created by {{user.name}}</figcaption>
+			</figure>
+			</h1>
+
+		</div>
+	</div>
+
+<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<a href="{{url_for('newPlayer', league_id = team.league_id, team_id = team.id)}}">
+				<button class="btn btn-default" id="new-menu-item">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Player
+				</button>
+			</a>
+			<a href="{{url_for('teams', league_id = team.league_id)}}">
+				<button class="btn btn-default" id="new-menu-item">
+					<span class="glyphicon" aria-hidden="true"></span>League {{team.league_id}}
+				</button>
+			</a>
+		</div>
+		<div class="col-md-7"></div>
+	</div>
+
+	{% if players !=[] %}
+		<div class="row">
+			<div class="col-md-12">
+					{% for i in players %}
+
+							<div class="menu-item">
+							<div class = "col-md-6">
+								<h3>{{i.name}}</h3>
+							</div>
+							<div class = "col-md-6">
+								<p>Postion {{i.position}}</p>
+							</div>
+								<a href="{{url_for('editPlayer', league_id = i.league_id, team_id = i.team_id, player_id = i.id)}}">Edit</a> |
+								<a href="{{url_for('deletePlayer', league_id = i.league_id, team_id = i.team_id, player_id = i.id)}}">Delete</a>
+							</div>
+
+					{% endfor %}
+			</div>
+
+
+		</div>
+	{% endif %}
+{% endblock %}

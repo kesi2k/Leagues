@@ -1,0 +1,50 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>Edit {{editedTeam.name}}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1 padding-top">
+			<form action="#" method = "post">
+				<div class="">
+					<div class="col-md-3">
+						<label for="name">Name:</label>
+						<input type ="text" maxlength="100" class="form-control" name="name" value="{{editedTeam.name}}">
+					</div>
+					<div class="col-md-2">
+						<label for="points">Points:</label>
+						<input type ="text" maxlength="100" class="form-control" name="points" value="{{editedTeam.pts}}">
+						<div class="padding-bottom"></div>
+					</div>
+					<div class="col-md-2">
+						<label for="points">Win:</label>
+						<input type ="text" maxlength="100" class="form-control" name="win" value="{{editedTeam.win}}">
+						<div class="padding-bottom"></div>
+					</div>
+					<div class="col-md-2">
+						<label for="points">Lose:</label>
+						<input type ="text" maxlength="100" class="form-control" name="lose" value="{{editedTeam.lose}}">
+						<div class="padding-bottom"></div>
+					</div>
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-default" id="submit" type="submit">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save</button>
+						<div class="padding-bottom"></div>
+					</div>
+				</div>
+			</form>
+			<div class="col-md-12">
+			<a href = "{{url_for('teams', league_id = editedTeam.league_id)}}">
+				<button class="btn btn-default delete">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Cancel</button>
+			</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
