@@ -6,6 +6,7 @@ from database_setup import Base, League, Team, Players, User
 from flask import session as login_session
 import random
 import string
+import os
 
 # Flow object from clients secret JSON file. Stores client ID and other
 # Oauth parameters
@@ -500,7 +501,8 @@ def newPlayer(league_id, team_id):
 
 
 if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 33507))
     app.secret_key = 'super_secret_key'
-    app.debug = True
     #app.run(host='0.0.0.0', port=8080)
-    app.run()
+    app.run(host='0.0.0.0', 
+            port=port)
